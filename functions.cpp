@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <sstream>
+#include <map>
 #include "functions.h"
 
 bool make_digraph(std::ifstream& iFile, Digraph& digraph)
@@ -51,77 +51,49 @@ bool check_vertex(std::vector<int>& v, int n)
 	return false;
 }
 
-std::vector<std::vector<int>> search_cycles(Digraph& digraph, int nStart, int nFinish)
+bool search_cycles(Digraph& digraph, std::vector<std::vector<int>>& vCycles)
 {
-	std::vector<std::vector<int>> vCycles;
-	std::vector<int> vOneCycle;
-	std::vector<int> vVisited, vVisiting;
-	std::vector<int> vNotVisited = digraph.vVertices;
-	
-	if ( !digraph.vVertices.empty() || (vVisited.size() == digraph.vVertices.size()))
-		return vCycles;
-
-
+	std::vector<int> vStack;
+	std::map<int, bool> mVisited;
+	for (int i = 0; i < digraph.vVertices.size(); i++)
+	{
+		mVisited[digraph.vVertices[i]] = false;
+	}
+	DFS(digraph, digraph.vVertices[0], mVisited, vStack, vCycles, 0);
+	if (vCycles.empty())
+		return false;
+	return true;
 }
 
-//bool make_digraph(std::ifstream& iFile, Digraph &digraph)
-//{
-//	std::vector<int> v;
-//	std::string s;
-//	int n1, n2; 
-//	bool b = false;
-//
-//	if (!(iFile >> n1 >> s >> n2))
-//		return false;
-//
-//	v.push_back(n1); v.push_back(n2);
-//	digraph.vArcs.push_back(v);
-//	if (n1 != n2)
-//	{
-//		digraph.vVertices.push_back(n1); digraph.vVertices.push_back(n2);
-//	}
-//	else
-//	{
-//		digraph.vVertices.push_back(n1);
-//	}
-//
-//	while (iFile >> s)
-//	{
-//		if (s == ",")
-//		{
-//			iFile >> n1 >> s >> n2;
-//			v[0] = n1; v[1] = n2;
-//			digraph.vArcs.push_back(v);
-//			for (int i = 0; i < digraph.vVertices.size(); i++)
-//			{
-//				if (digraph.vVertices[i] == n1)
-//				{
-//					b = true;
-//					break;
-//				}
-//			}
-//			if (!b)
-//			{
-//				digraph.vVertices.push_back(n1);
-//			}
-//			b = false;
-//			if (n1 != n2)
-//			{
-//				for (int i = 0; i < digraph.vVertices.size(); i++)
-//				{
-//					if (digraph.vVertices[i] == n2)
-//					{
-//						b = true;
-//						break;
-//					}
-//				}
-//				if (!b)
-//				{
-//					digraph.vVertices.push_back(n2);
-//				}
-//				b = false;
-//			}
-//		}
-//	}
-//	return true;
-//}
+void DFS(Digraph& digraph, int nVertex, std::map<int, bool>& mVisited, std::vector<int>& vStack, std::vector<std::vector<int>>& vCycles, int nIteration)
+{
+	mVisited[nVertex] = true;
+	vStack.push_back(nVertex);
+	for (int i = 0; i < digraph.vArcs.size(); i++)
+	{
+		if (digraph.vArcs[i][0] == nVertex)
+		{
+			if (digraph.vArcs[i][1] == vStack[0])
+			{
+				vStack.push_back(digraph.vArcs[i][1]);
+				vCycles.push_back(vStack);
+				vStack.pop_back();
+			}
+			if (!mVisited[digraph.vArcs[i][1]])
+			{
+				DFS(digraph, digraph.vArcs[i][1], mVisited, vStack, vCycles, nIteration + 1);
+			}
+		}
+	}
+	vStack.pop_back();
+	if (nIteration == 0)
+	{
+		for (int i = 1; i < digraph.vVertices.size(); i++)
+		{
+			for (auto it = mVisited.begin(); it != mVisited.end(); it++)
+				it->second = false;
+			DFS(digraph, digraph.vVertices[i], mVisited, vStack, vCycles, nIteration + 1);
+		}
+	}
+	return;
+}
