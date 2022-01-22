@@ -6,36 +6,37 @@
 
 bool make_digraph(std::ifstream& iFile, Digraph& digraph)
 {
-	std::vector<int> v;
+	std::vector<int> v{ 0,0 };
 	std::string s;
-	int n1, n2;
-	bool b = false;
+	int n;
 
-	if (!(iFile >> n1 >> s >> n2))
-		return false;
-
-	v.push_back(n1); v.push_back(n2);
-	digraph.vArcs.push_back(v);
-	if (n1 != n2)
+	if (iFile >> n)
 	{
-		digraph.vVertices.push_back(n1); digraph.vVertices.push_back(n2);
+		digraph.vVertices.push_back(n);
+		v[0] = n;
 	}
 	else
-	{
-		digraph.vVertices.push_back(n1);
-	}
+		return false;
 
-	while (iFile >> s)
+	while (iFile >> s >> n)
 	{
-		if (s == ",")
+		if (s == "->")
 		{
-			iFile >> n1 >> s >> n2;
-			v[0] = n1; v[1] = n2;
+			v.push_back(n);
+			v[1] = n;
 			digraph.vArcs.push_back(v);
-			if (!check_vertex(digraph.vVertices, n1))
-				digraph.vVertices.push_back(n1);
-			if (!check_vertex(digraph.vVertices, n2))
-				digraph.vVertices.push_back(n2);
+			if (!check_vertex(digraph.vVertices, n))
+				digraph.vVertices.push_back(n);
+		}
+		else if (s == ",")
+		{
+			v[0] = n;
+			if (!check_vertex(digraph.vVertices, n))
+				digraph.vVertices.push_back(n);
+		}
+		else
+		{
+			return false;
 		}
 	}
 	return true;

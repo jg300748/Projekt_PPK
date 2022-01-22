@@ -26,11 +26,11 @@ int main(int argc, char* argv[])
 	std::ifstream iFile(argv[input_file]);
 	std::ofstream oFile(argv[output_file]);
 
-	if (!iFile || !oFile) { iFile.close(); oFile.close(); std::cerr << "A file error ocured!"; return 0; }
+	if (!iFile || !oFile) { iFile.close(); oFile.close(); std::cerr << "Wystapil blad podczas otwierania pliku!"; return 0; }
 
 	if (not make_digraph(iFile, digraph))
 	{
-		std::cout << "...doesn't work...";		//dodac info zwrotne ze zly format
+		std::cerr << "Wystapil blad podczas odczytywania danych z pliku. Sprawdz czy format danych jest prawidlowy, czyli:\n<WIERZCHOLEK> -> <WIERZCHOLEK>\nPoszczegolne krawedzie powinny byc oddzielone przecinkiem.";		//dodac info zwrotne ze zly format
 		iFile.close();
 		oFile.close();
 		return 0;
@@ -59,8 +59,8 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		std::cout << "None cycles were found.";
-		oFile << "None cycles were found.";
+		std::cout << "No cycles were found.";
+		oFile << "No cycles were found.";
 	}
 
 
