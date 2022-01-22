@@ -4,14 +4,29 @@
 #include <map>
 #include "functions.h"
 
-int main()
+int main(int argc, char* argv[])
 {
+	if (argc < 2)
+	{
+		std::cout << "Program zostal wywolany bez parametrow. Poprawne wywolanie programu powinno wygladac w taki sposob:\ndirected_graphs_cycles.exe -g <PLIK_Z_DANYMI_WEJSCIOWYMI> -c <PLIK_Z_DANYMI_WYJSCIOWYMI>\n";
+		return 0;
+	}
+
+	int input_file{ 0 }, output_file{ 0 };
+	for (int i = 0; i < argc; i++)
+	{
+		if (std::string(argv[i]) == "-g")
+			input_file = i + 1;
+		else if (std::string(argv[i]) == "-c")
+			output_file = i + 1;
+	}
+
 	Digraph digraph;
 	std::vector<std::vector<int>> vCycles;
-	std::ifstream iFile("input_data.txt");
-	std::ofstream oFile("output_data.txt");
+	std::ifstream iFile(argv[input_file]);
+	std::ofstream oFile(argv[output_file]);
 
-	if (!iFile || !oFile) { iFile.close(); oFile.close(); std::cerr << "FILE ERROR: cannot open file"; return 0; }
+	if (!iFile || !oFile) { iFile.close(); oFile.close(); std::cerr << "A file error ocured!"; return 0; }
 
 	if (not make_digraph(iFile, digraph))
 	{

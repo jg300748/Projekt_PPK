@@ -65,7 +65,7 @@ bool search_cycles(Digraph& digraph, std::vector<std::vector<int>>& vCycles)
 	return true;
 }
 
-void DFS(Digraph& digraph, int nVertex, std::map<int, bool>& mVisited, std::vector<int>& vStack, std::vector<std::vector<int>>& vCycles, int nIteration)
+void DFS(Digraph& digraph, int nVertex, std::map<int, bool> mVisited, std::vector<int>& vStack, std::vector<std::vector<int>>& vCycles, int nIteration)
 {
 	mVisited[nVertex] = true;
 	vStack.push_back(nVertex);
