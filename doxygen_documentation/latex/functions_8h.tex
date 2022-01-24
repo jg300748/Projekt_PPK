@@ -1,0 +1,89 @@
+\hypertarget{functions_8h}{}\doxysection{functions.\+h File Reference}
+\label{functions_8h}\index{functions.h@{functions.h}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_digraph}{Digraph}}
+\begin{DoxyCompactList}\small\item\em Struktura \mbox{\hyperlink{struct_digraph}{Digraph}} reprezentuje graf skierowany. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{functions_8h_a9d56b169251bede61b576798045acfbb}{make\+\_\+digraph}} (std\+::ifstream \&i\+File, \mbox{\hyperlink{struct_digraph}{Digraph}} \&digraph)
+\begin{DoxyCompactList}\small\item\em Funkcja make\+\_\+digraph s³u¿y do wype³nienia zmiennej typu \mbox{\hyperlink{struct_digraph}{Digraph}} danymi z pliku wejœciowego. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{functions_8h_a8c11f638f45fd638d6d3593cace432cc}{search\+\_\+cycles}} (\mbox{\hyperlink{struct_digraph}{Digraph}} \&digraph, std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&v\+Cycles)
+\begin{DoxyCompactList}\small\item\em Funkcja search\+\_\+cycles przygotowuje potrzebne zmienne dla funkcji DFS, któr¹ nastêpnie wywo³uje. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{functions_8h_ad3cdd810109556afd6c5ad3ff3fd51b9}{DFS}} (std\+::map$<$ int, bool $>$ m\+Vertices, std\+::map$<$ int, std\+::vector$<$ int $>$ $>$ \&m\+Arcs, std\+::map$<$ int, bool $>$ \&m\+Visited, int n\+Vertex, std\+::vector$<$ int $>$ \&v\+Stack, std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&v\+Cycles, int n\+Iteration)
+\begin{DoxyCompactList}\small\item\em Funkcja DFS s³u¿y do szukanania cykli w grafie skierowanym. Funkcja korzysta z rekurencyjnego algorytmu przeszukiwania w g³¹b. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{functions_8h_ad3cdd810109556afd6c5ad3ff3fd51b9}\label{functions_8h_ad3cdd810109556afd6c5ad3ff3fd51b9}} 
+\index{functions.h@{functions.h}!DFS@{DFS}}
+\index{DFS@{DFS}!functions.h@{functions.h}}
+\doxysubsubsection{\texorpdfstring{DFS()}{DFS()}}
+{\footnotesize\ttfamily void DFS (\begin{DoxyParamCaption}\item[{std\+::map$<$ int, bool $>$}]{m\+Vertices,  }\item[{std\+::map$<$ int, std\+::vector$<$ int $>$ $>$ \&}]{m\+Arcs,  }\item[{std\+::map$<$ int, bool $>$ \&}]{m\+Visited,  }\item[{int}]{n\+Vertex,  }\item[{std\+::vector$<$ int $>$ \&}]{v\+Stack,  }\item[{std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&}]{v\+Cycles,  }\item[{int}]{n\+Iteration }\end{DoxyParamCaption})}
+
+
+
+Funkcja DFS s³u¿y do szukanania cykli w grafie skierowanym. Funkcja korzysta z rekurencyjnego algorytmu przeszukiwania w g³¹b. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+Vertices} & Mapa reprezentuj¹ca wierzcho³ki grafu. Wartoœci informuj¹ czy dany wierzcho³ek by³ ju¿ odwiedzony podczas szukania cykli. \\
+\hline
+{\em m\+Arcs} & Mapa reprezentuj¹ca krawêdzi grafu. \\
+\hline
+{\em m\+Visited} & Mapa przechowuj¹c¹ informacjê, czy dla danego wierzcho³ka by³y ju¿ szukane cykle. \\
+\hline
+{\em n\+Vertex} & Wierzcho³ek dla którego wywo³ywana jest funkcja. \\
+\hline
+{\em v\+Stack} & Wektor u¿ywany jako stos, do którego odk³adane s¹ kolejne wierzcho³ki wywo³añ funkcji. Jeœli jego pocz¹tkowy i ostatni element s¹ sobie równe, to znajduje siê w nim cykl. \\
+\hline
+{\em v\+Cycles} & Wektor wektrów przechowuj¹cy znalezione cykle. \\
+\hline
+{\em n\+Iteration} & Licznik iteracji funkcji. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Mapa krawêdzi oraz wierzcho³ków przekazywana jest osobno, a nie jako pojedyncza struktura dla oszczêdnoœci pamiêci. Mapa krawêdzi mo¿e zostaæ przekazana przez referencje, jednak mapa wierzcho³ków dla poprawnego dzia³ania funkcji musi zostaæ przekazana przez kopiê. 
+\end{DoxyNote}
+\mbox{\Hypertarget{functions_8h_a9d56b169251bede61b576798045acfbb}\label{functions_8h_a9d56b169251bede61b576798045acfbb}} 
+\index{functions.h@{functions.h}!make\_digraph@{make\_digraph}}
+\index{make\_digraph@{make\_digraph}!functions.h@{functions.h}}
+\doxysubsubsection{\texorpdfstring{make\_digraph()}{make\_digraph()}}
+{\footnotesize\ttfamily bool make\+\_\+digraph (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{i\+File,  }\item[{\mbox{\hyperlink{struct_digraph}{Digraph}} \&}]{digraph }\end{DoxyParamCaption})}
+
+
+
+Funkcja make\+\_\+digraph s³u¿y do wype³nienia zmiennej typu \mbox{\hyperlink{struct_digraph}{Digraph}} danymi z pliku wejœciowego. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\+File} & Zmienna plikowa z danymi wejœciowymi, które bêd¹ u¿yte do wype³nienia zmiennej \mbox{\hyperlink{struct_digraph}{Digraph}}. \\
+\hline
+{\em digraph} & Zmienna typu \mbox{\hyperlink{struct_digraph}{Digraph}}, która bêdzie wype³niana danymi. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Funkcja zwraca wartoœæ false, jeœli dane wejœciowe s¹ podane w z³ym formacie (np. pojawia siê niepo¿¹dany znak). Funkcja zwraca wartoœæ true, jeœli zmienna digraph zosta³a pomyœlnie zape³niona danymi. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{functions_8h_a8c11f638f45fd638d6d3593cace432cc}\label{functions_8h_a8c11f638f45fd638d6d3593cace432cc}} 
+\index{functions.h@{functions.h}!search\_cycles@{search\_cycles}}
+\index{search\_cycles@{search\_cycles}!functions.h@{functions.h}}
+\doxysubsubsection{\texorpdfstring{search\_cycles()}{search\_cycles()}}
+{\footnotesize\ttfamily bool search\+\_\+cycles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_digraph}{Digraph}} \&}]{digraph,  }\item[{std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&}]{v\+Cycles }\end{DoxyParamCaption})}
+
+
+
+Funkcja search\+\_\+cycles przygotowuje potrzebne zmienne dla funkcji DFS, któr¹ nastêpnie wywo³uje. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em digraph} & Graf w którym szukane bêd¹ cykle. \\
+\hline
+{\em v\+Cycles} & Wektor wektorów intów, w którym przechowywane bêd¹ znalezione cykle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Funkcja zwraca wartoœæ true, jeœli jakieœ cykle zosta³y znalezione. Funkcja zwraca false jeœli ¿aden cykl nie zosta³ znaleziony. 
+\end{DoxyReturn}

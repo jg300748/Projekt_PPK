@@ -1,0 +1,37 @@
+\hypertarget{struct_digraph}{}\doxysection{Digraph Struct Reference}
+\label{struct_digraph}\index{Digraph@{Digraph}}
+
+
+Struktura \mbox{\hyperlink{struct_digraph}{Digraph}} reprezentuje graf skierowany.  
+
+
+
+
+{\ttfamily \#include $<$functions.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_digraph_a67a3c6b94411ae9ce6aa861728963cbf}\label{struct_digraph_a67a3c6b94411ae9ce6aa861728963cbf}} 
+std\+::map$<$ int, bool $>$ {\bfseries m\+Vertices}
+\item 
+\mbox{\Hypertarget{struct_digraph_afc7b31c73c3f7e50626d53b603098c48}\label{struct_digraph_afc7b31c73c3f7e50626d53b603098c48}} 
+std\+::map$<$ int, std\+::vector$<$ int $>$ $>$ {\bfseries m\+Arcs}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struktura \mbox{\hyperlink{struct_digraph}{Digraph}} reprezentuje graf skierowany. 
+
+Struktura \mbox{\hyperlink{struct_digraph}{Digraph}} posiada dwie sk³adowe reprezentuj¹ce kolejno wierzcho³ki i krawêdzie grafu. 
+\begin{DoxyParams}{Parameters}
+{\em m\+Vertices} & Mapa o kluczu typu int i wartoœci typu bool. Klucz reprezentuje wierzcho³ek grafu, a wartoœci s¹ przydatne w póŸniejszym szukaniu cykli. \\
+\hline
+{\em m\+Arcs} & Mapa o kluczu typu int i wartoœci bêd¹cej wektorem intów. Klucz reprezentuje wierzcho³ek grafu, a wartoœæ przechowuje wszystkie wierzcho³ki do których mo¿na dostaæ siê z wierzcho³ka danego kluczem. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{functions_8h}{functions.\+h}}\end{DoxyCompactItemize}

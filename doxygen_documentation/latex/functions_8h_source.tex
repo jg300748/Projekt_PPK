@@ -1,0 +1,21 @@
+\hypertarget{functions_8h_source}{}\doxysection{functions.\+h}
+\mbox{\hyperlink{functions_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#ifndef define}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#define define}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{11 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_digraph}{Digraph}}}
+\DoxyCodeLine{12 \{}
+\DoxyCodeLine{13     std::map<int, bool> mVertices;}
+\DoxyCodeLine{14     std::map<int, std::vector<int>> mArcs;}
+\DoxyCodeLine{15 \};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{23 \textcolor{keywordtype}{bool} \mbox{\hyperlink{functions_8h_a9d56b169251bede61b576798045acfbb}{make\_digraph}}(std::ifstream\& iFile, \mbox{\hyperlink{struct_digraph}{Digraph}}\& digraph);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{31 \textcolor{keywordtype}{bool} \mbox{\hyperlink{functions_8h_a8c11f638f45fd638d6d3593cace432cc}{search\_cycles}}(\mbox{\hyperlink{struct_digraph}{Digraph}}\& digraph, std::vector<std::vector<int>>\& vCycles);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{44 \textcolor{keywordtype}{void} \mbox{\hyperlink{functions_8h_ad3cdd810109556afd6c5ad3ff3fd51b9}{DFS}}(std::map<int, bool> mVertices, std::map<\textcolor{keywordtype}{int}, std::vector<int>>\& mArcs, std::map<int, bool>\& mVisited, \textcolor{keywordtype}{int} nVertex, std::vector<int>\& vStack, std::vector<std::vector<int>>\& vCycles, \textcolor{keywordtype}{int} nIteration);}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
