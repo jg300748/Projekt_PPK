@@ -20,6 +20,11 @@ int main(int argc, char* argv[])
 		else if (std::string(argv[i]) == "-c")
 			output_file = i + 1;
 	}
+	if (input_file == 0 || output_file == 0)
+	{
+		std::cout << "Zosta³y podane nieprawid³owe parametry!\n";
+		return 0;
+	}
 
 	Digraph digraph;
 	std::vector<std::vector<int>> vCycles;
@@ -30,22 +35,12 @@ int main(int argc, char* argv[])
 
 	if (not make_digraph(iFile, digraph))
 	{
-		std::cerr << "Wystapil blad podczas odczytywania danych z pliku. Sprawdz czy format danych jest prawidlowy, czyli:\n<WIERZCHOLEK> -> <WIERZCHOLEK>\nPoszczegolne krawedzie powinny byc oddzielone przecinkiem.";		//dodac info zwrotne ze zly format
+		std::cerr << "Wystapil blad podczas odczytywania danych z pliku. Sprawdz czy format danych jest prawidlowy, czyli:\n<WIERZCHOLEK> -> <WIERZCHOLEK>\nPoszczegolne krawedzie powinny byc oddzielone przecinkiem.";
 		iFile.close();
 		oFile.close();
 		return 0;
 	}
-	/*std::cout << "Vertices:\n";
-	for (int i = 0; i < digraph.vVertices.size(); i++)
-		std::cout << digraph.vVertices[i] << std::endl;
-	std::cout << "Arcs:\n";
-	for (int i = 0; i < digraph.vArcs.size(); i++)
-	{
-		for (int j = 0; j < 2; j++)
-			std::cout << digraph.vArcs[i][j] << " ";
-		std::cout << std::endl;
-	}*/
-
+	
 	if (search_cycles(digraph, vCycles))
 	{
 		for (int i = 0; i < vCycles.size(); i++)
@@ -59,8 +54,8 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		std::cout << "No cycles were found.";
-		oFile << "No cycles were found.";
+		std::cout << "Nie znaleziono cykli.";
+		oFile << "Nie znaleziono cykli.";
 	}
 
 
