@@ -8,6 +8,7 @@ bool make_digraph(std::ifstream& iFile, Digraph& digraph)
 {
 	std::string s;
 	int n1, n2;
+	bool b {false};
 
 	if (iFile >> n1)
 	{
@@ -24,13 +25,24 @@ bool make_digraph(std::ifstream& iFile, Digraph& digraph)
 				return false;
 			if (digraph.mVertices.find(n2) == digraph.mVertices.end())
 				digraph.mVertices[n2] = false;
-			digraph.mArcs[n1].push_back(n2);
+			for (int i = 0; i < digraph.mArcs[n1].size(); i++)
+			{
+				if (digraph.mArcs[n1][i] == n2)
+				{
+					b = true;
+					break;
+				}
+			}
+			if (!b)
+			{
+				digraph.mArcs[n1].push_back(n2);
+				b = false;
+			}
 		}
 		else if (s == ",")
 		{
 			if(!(iFile >> n1))
 				return false;
-			n1 = n2;
 			if (digraph.mVertices.find(n1) == digraph.mVertices.end())
 				digraph.mVertices[n1] = false;
 		}
