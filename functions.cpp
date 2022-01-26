@@ -16,16 +16,20 @@ bool make_digraph(std::ifstream& iFile, Digraph& digraph)
 	else
 		return false;
 
-	while (iFile >> s >> n2)
+	while (iFile >> s)
 	{
 		if (s == "->")
 		{
+			if (!(iFile >> n2))
+				return false;
 			if (digraph.mVertices.find(n2) == digraph.mVertices.end())
 				digraph.mVertices[n2] = false;
 			digraph.mArcs[n1].push_back(n2);
 		}
 		else if (s == ",")
 		{
+			if(!(iFile >> n1))
+				return false;
 			n1 = n2;
 			if (digraph.mVertices.find(n1) == digraph.mVertices.end())
 				digraph.mVertices[n1] = false;
